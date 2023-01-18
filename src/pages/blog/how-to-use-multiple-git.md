@@ -1,0 +1,94 @@
+---
+layout: '../../layouts/BlogPost.astro'
+title: 'How to use multiple git account on the same machine'
+description: 'This method will automatically choose git account to use base on work directory. You can add many git account as you want.'
+pubDate: 2023-01-11 11:39:00 +0700
+tags:
+    - programming
+---
+This method will automatically choose git account to use base on work directory. You can add many git account as you want.
+
+### Related files
+All files we gonna make change to
+- ~/.ssh/config
+- ~/.gitconfig
+- ~/workspace/work/.gitconfig
+- ~/workspace/personal/.gitconfig
+
+## Create ssh key for each account
+Follow steps from github [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  
+Please name you key differently for each account. e.g.  `~/.ssh/id_ed25519-personal`, `~/.ssh/id_ed25519-work`  
+
+## Config ssh key for each account
+In `~/.ssh/config` config it like this. Use different identity file for different host. You can name your host anything, we will use it in the next step.
+```ssh-config
+# Personal GitHub
+Host github-personal
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519-personal
+
+# Work GitHub
+Host github-work
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519-work
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+```
+
+## Config git config
+We gonna make git agent know when to use which account base on workspace.  
+If we are in `~/workspace/work`, it will use `~/workspace/work/.gitconfig`  
+If we are in `~/workspace/personal`, it will use `~/workspace/personal/.gitconfig`    
+
+Edit your `~/.gitconfig`
+```ini
+[includeIf "gitdir/i:~/workspace/work/"]
+    path = ~/workspace/work/.gitconfig
+
+[url "github-work:organization/"]
+    insteadOf = git@github.com:organization/
+
+[includeIf "gitdir/i:~/workspace/personal/"]
+    path = ~/workspace/personal/.gitconfig
+
+[url "github-personal"]
+    insteadOf = git@github.com
+```
+
+includeIf part tells git agent to include .gitconfig in the specify path if we are in the specify gitdir.  In this example, it means if you are working on any repository inside `~/workspace/work` directory, gitconfig from `~/workspace/work/.gitconfig` will be included.
+```ini
+[includeIf "gitdir/i:~/workspace/work/"]
+    path = ~/workspace/work/.gitconfig
+```
+url part is for transforming github host from normal to our specific host, so the ssh key will be picked correctly base on host.  
+In this example, we determine which repo is work repo using organization.
+```ini
+[url "github-work:organization/"]
+    insteadOf = git@github.com:organization/
+```
+In this example, everything else will be transformed to github-personal host
+```ini
+[url "github-personal"]
+    insteadOf = git@github.com
+```
+
+## Config gitconfig for each account
+In `~/workspace/work/.gitconfig` and `~/workspace/personal/.gitconfig`, config git username and email.
+```ini
+[user]
+	email = your-email@gmail.com
+	name = git-username
+```
+
+## Check
+Go to any git repository in your work workspace and your personal workspace. Run this command. You should see your configured username correctly.
+```shell
+git config --get-all user.name
+```
+
+## Ref
+https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3
