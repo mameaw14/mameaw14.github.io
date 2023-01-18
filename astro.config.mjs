@@ -7,4 +7,9 @@ import sitemap from '@astrojs/sitemap'
 export default defineConfig({
   site: 'https://mameaw14.xyz',
   integrations: [mdx(), sitemap()],
+  markdown:{
+    shikiConfig:{
+      theme: 'dracula-soft',
+    }
+  }
 })
