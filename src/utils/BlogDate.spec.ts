@@ -11,6 +11,6 @@ describe(`Blog Date`, () => {
     it(`should format date`, () => {
         const blogDate = new BlogDate(new Date(2023, 0, 11, 10, 10))
 
-        expect(blogDate.toDateString()).toBe("11 January 2023")
+        expect(blogDate.toDateString()).toBe("11 January 2024")
     })
 })
