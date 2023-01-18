@@ -3,18 +3,35 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+@import url('https://fonts.googleapis.com/css?family=Monoton|Open+Sans|Trirong');
+
+:root {
+  --accent-color: #ff23bf;
+}
+
+html {
+  background-color: #FFFDF6;
+  background-image: url('/square-grid-pattern.png');
+  background-repeat: repeat;
+  background-size: 25px;
+}
+
 body {
-  font-family: Verdana, sans-serif;
+  font-family: 'Open Sans', 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
   margin: auto;
   padding: 20px;
-  max-width: 65ch;
+  max-width: 100ch;
   text-align: left;
   background-color: #fff;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 1.5;
   color: #444;
+  min-height: calc(100vh - 40px);
+
+  border-right: 5px double #a4a4a4;
 }
+
 h1,
 h2,
 h3,
@@ -24,40 +41,53 @@ h6,
 strong,
 b {
   color: #222;
+  font-family: 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
+
 }
+
 a {
   color: #3273dc;
 }
+
 nav a {
   margin-right: 10px;
 }
+
 textarea {
   width: 100%;
   font-size: 16px;
 }
+
 input {
   font-size: 16px;
 }
+
 content {
   line-height: 1.6;
 }
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
 }
+
 code {
   padding: 2px 5px;
   background-color: #f2f2f2;
 }
+
 pre {
   padding: 1rem;
 }
-pre > code {
+
+pre>code {
   all: unset;
 }
+
 blockquote {
   border: 1px solid #999;
   color: #222;

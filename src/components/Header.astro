@@ -1,12 +1,16 @@
 ---
 import HeaderLink from './HeaderLink.astro'
+import MMIconBox from './MMIconBox.astro'
 import { SITE_TITLE } from '../config'
 ---
 
 <header>
-  <h2>
-    {SITE_TITLE}
-  </h2>
+  <div>
+    <h2>
+      <MMIconBox />
+      {SITE_TITLE}
+    </h2>
+  </div>
   <nav>
     <HeaderLink href="/">🏠 Home</HeaderLink>
     <HeaderLink href="/blog">🌳 Blog</HeaderLink>
