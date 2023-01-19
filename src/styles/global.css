@@ -3,7 +3,8 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-@import url('https://fonts.googleapis.com/css?family=Monoton|Open+Sans|Trirong');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Trirong');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   --accent-color: #ff23bf;
@@ -17,10 +18,10 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
+  font-family: 'Inter', 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
   margin: auto;
   padding: 20px;
-  max-width: 100ch;
+  max-width: 70ch;
   text-align: left;
   background-color: #fff;
   word-wrap: break-word;
@@ -28,6 +29,7 @@ body {
   line-height: 1.5;
   color: #444;
   min-height: calc(100vh - 40px);
+  font-size: 18px;
 
   border-right: 5px double #a4a4a4;
 }
@@ -41,7 +43,7 @@ h6,
 strong,
 b {
   color: #222;
-  font-family: 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
+  font-family: 'IBM Plex Serif', Inter, 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
 }
 
 a {
