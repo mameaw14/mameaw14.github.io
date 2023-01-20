@@ -3,8 +3,10 @@ layout: '../../layouts/BlogPost.astro'
 title: 'How to use multiple git account on the same machine'
 description: 'This method will automatically choose git account to use base on work directory. You can add many git account as you want.'
 pubDate: 2023-01-11 11:39:00 +0700
+updatedDate: 2023-01-20 19:55:00 +0700
 tags:
     - programming
+    - en
 ---
 This method will automatically choose git account to use base on work directory. You can add many git account as you want.
 
@@ -24,19 +26,21 @@ In `~/.ssh/config` config it like this. Use different identity file for differen
 ```ssh-config
 # Personal GitHub
 Host github-personal
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519-personal
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519-personal
+    IdentitiesOnly yes
 
 # Work GitHub
 Host github-work
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519-work
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519-work
+    IdentitiesOnly yes
 
 Host *
-  AddKeysToAgent yes
-  UseKeychain yes
+    AddKeysToAgent yes
+    UseKeychain yes
 ```
 
 ## Config git config
@@ -49,39 +53,21 @@ Edit your `~/.gitconfig`
 [includeIf "gitdir/i:~/workspace/work/"]
     path = ~/workspace/work/.gitconfig
 
-[url "github-work:organization/"]
-    insteadOf = git@github.com:organization/
-
 [includeIf "gitdir/i:~/workspace/personal/"]
     path = ~/workspace/personal/.gitconfig
-
-[url "github-personal"]
-    insteadOf = git@github.com
 ```
 
 includeIf part tells git agent to include .gitconfig in the specify path if we are in the specify gitdir.  In this example, it means if you are working on any repository inside `~/workspace/work` directory, gitconfig from `~/workspace/work/.gitconfig` will be included.
-```ini
-[includeIf "gitdir/i:~/workspace/work/"]
-    path = ~/workspace/work/.gitconfig
-```
-url part is for transforming github host from normal to our specific host, so the ssh key will be picked correctly base on host.  
-In this example, we determine which repo is work repo using organization.
-```ini
-[url "github-work:organization/"]
-    insteadOf = git@github.com:organization/
-```
-In this example, everything else will be transformed to github-personal host
-```ini
-[url "github-personal"]
-    insteadOf = git@github.com
-```
 
 ## Config gitconfig for each account
-In `~/workspace/work/.gitconfig` and `~/workspace/personal/.gitconfig`, config git username and email.
+In `~/workspace/work/.gitconfig` and `~/workspace/personal/.gitconfig`, config based on git account sits here. We will config email/name and rewrite github host here.
 ```ini
 [user]
-	email = your-email@gmail.com
-	name = git-username
+    email = your-email@gmail.com
+    name = git-username
+
+[url "git@github-personal"]
+    insteadOf = git@github.com
 ```
 
 ## Check
@@ -92,3 +78,5 @@ git config --get-all user.name
 
 ## Ref
 https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3
+https://stackoverflow.com/questions/4665337/git-pushing-to-remote-github-repository-as-wrong-user/12438179#12438179
+https://gist.github.com/jexchan/2351996
