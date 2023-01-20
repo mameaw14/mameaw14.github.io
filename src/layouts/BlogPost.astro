@@ -16,8 +16,8 @@ export interface Props {
 
 let { title, description, pubDate, updatedDate, heroImage } = Astro.props.content
 
-pubDate = pubDate ? BlogDate.fromDateString(pubDate).toDateString() : ''
-updatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() : ''
+const formattedPubDate = pubDate ? BlogDate.fromDateString(pubDate).toDateString() : ''
+const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() : ''
 ---
 
 <html lang="en">
@@ -44,17 +44,17 @@ updatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() 
         {
           pubDate && (
             <small>
-              <time>{pubDate}</time>
+              <time datetime={pubDate}>{formattedPubDate}</time>
             </small>
           )
         }
         {
           updatedDate && (
-            <div>
+            <span>
               <small>
-                Last updated on <time>{updatedDate}</time>
+                / Last updated on <time datetime={updatedDate}>{formattedUpdatedDate}</time>
               </small>
-            </div>
+            </span>
           )
         }
         <hr />

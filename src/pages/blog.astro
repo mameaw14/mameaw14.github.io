@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import BlogListItem from '../components/BlogListItem.astro'
+import HorizontalLine from '../components/HorizontalLine.astro'
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
@@ -18,9 +20,11 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
       ul {
         list-style-type: none;
         padding: unset;
+        margin: 0;
       }
-      ul li {
-        display: flex;
+
+      ul li:hover {
+        /* background: var(--accent200); */
       }
       ul li time {
         flex: 0 0 130px;
@@ -30,24 +34,30 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
       ul li a:visited {
         color: #8e32dc;
       }
+      section {
+        margin: 0 -20px;
+      }
+      .bloglist-item-wrapper {
+        padding: var(--body-padding);
+        padding-bottom: 0;
+      }
     </style>
   </head>
   <body>
     <Header />
     <main>
       <section>
+        <HorizontalLine />
         <ul>
           {
             posts.map((post) => (
               <li>
-                <time datetime={post.frontmatter.pubDate}>
-                  {new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </time>
-                <a href={post.url}>{post.frontmatter.title}</a>
+                <div>
+                  <div class="bloglist-item-wrapper">
+                    <BlogListItem post={post} />
+                  </div>
+                  <HorizontalLine />
+                </div>
               </li>
             ))
           }

@@ -1,0 +1,40 @@
+---
+import { BlogDate } from '../utils/BlogDate'
+
+const { post } = Astro.props
+const pubDate = BlogDate.fromDateString(post.frontmatter.pubDate).toDateString()
+---
+
+<div>
+  <h3><a href={post.url} class="title">{post.frontmatter.title}</a></h3>
+  <small
+    ><time datetime={post.frontmatter.pubDate}>
+      {pubDate}
+    </time>
+  </small>
+  <p class="description">{post.frontmatter.description}</p>
+</div>
+<style>
+  h3 {
+    line-height: 1.5;
+    margin: 0;
+    font-size: 24px;
+  }
+  small {
+    font-size: 14px;
+  }
+  div {
+    padding-bottom: 1em;
+    max-width: 60ch;
+  }
+  .title {
+    color: var(--black);
+    text-decoration: none;
+  }
+  .description {
+    font-size: 16px;
+
+    color: var(--gray400);
+  }
+
+</style>
