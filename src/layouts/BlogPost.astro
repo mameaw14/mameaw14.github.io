@@ -41,11 +41,19 @@ updatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() 
       <article>
         {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
         <h1 class="title">{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
+        {
+          pubDate && (
+            <small>
+              <time>{pubDate}</time>
+            </small>
+          )
+        }
         {
           updatedDate && (
             <div>
-              Last updated on <time>{updatedDate}</time>
+              <small>
+                Last updated on <time>{updatedDate}</time>
+              </small>
             </div>
           )
         }
