@@ -1,23 +1,4 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import Blog from './blog.astro'
 ---
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header title={SITE_TITLE} />
-    <main>
-      <h1>🚧 under construction...</h1>
-      <small>Is above title font too thick? 🤔</small>
-      <p>I'm trying to make this my style. Playing around modifying the theme. Have fun visiting my site. :)</p>
-      <p>ทดลองพิมพ์ภาษาไทย</p>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Blog/>
