@@ -3,7 +3,7 @@ layout: '../../layouts/BlogPost.astro'
 title: 'How to use multiple git account on the same machine'
 description: 'This method will automatically choose git account to use base on work directory. You can add many git account as you want.'
 pubDate: 2023-01-11 11:39:00 +0700
-updatedDate: 2023-01-20 19:55:00 +0700
+updatedDate: 2023-01-20 20:18:00 +0700
 tags:
     - programming
     - en
@@ -77,6 +77,6 @@ git config --get-all user.name
 ```
 
 ## Ref
-https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3
-https://stackoverflow.com/questions/4665337/git-pushing-to-remote-github-repository-as-wrong-user/12438179#12438179
-https://gist.github.com/jexchan/2351996
+1. https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3  
+2. https://stackoverflow.com/questions/4665337/git-pushing-to-remote-github-repository-as-wrong-user/12438179#12438179  
+3. https://gist.github.com/jexchan/2351996  
