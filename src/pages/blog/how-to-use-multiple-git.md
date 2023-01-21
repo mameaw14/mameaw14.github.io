@@ -1,15 +1,15 @@
 ---
 layout: '../../layouts/BlogPost.astro'
-title: 'How to use multiple git account on the same machine'
-description: 'This method will automatically choose git account to use base on work directory. You can add many git account as you want.'
+title: 'How to use multiple git accounts on the same machine'
+description: 'This method will automatically choose a git account to use based on work directory. You can add as many git accounts as you want.'
 pubDate: 2023-01-11 11:39:00 +0700
-updatedDate: 2023-01-20 20:18:00 +0700
+updatedDate: 2023-01-22 03:48:00 +0700
 tags:
   - programming
   - en
 ---
 
-This method will automatically choose git account to use base on work directory. You can add many git account as you want.
+This method will automatically choose a git account to use based on work directory. You can add as many git accounts as you want.
 
 ### Related files
 
@@ -20,14 +20,14 @@ All files we gonna make change to
 - ~/workspace/work/.gitconfig
 - ~/workspace/personal/.gitconfig
 
-## Create ssh key for each account
+## Create ssh keys
 
 Follow steps from github [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).  
-Please name you key differently for each account. e.g. `~/.ssh/id_ed25519-personal`, `~/.ssh/id_ed25519-work`
+Please name your keys differently for each account. e.g. `~/.ssh/id_ed25519-personal`, `~/.ssh/id_ed25519-work`
 
-## Config ssh key for each account
+## Config ssh keys
 
-In `~/.ssh/config` config it like this. Use different identity file for different host. You can name your host anything, we will use it in the next step.
+In `~/.ssh/config` config it like this. Use different identity file for different host. You can name your host anything; we will use it in the next step.
 
 ```ssh-config
 # Personal GitHub
@@ -49,9 +49,9 @@ Host *
     UseKeychain yes
 ```
 
-## Config git config
+## Config global gitconfig
 
-We gonna make git agent know when to use which account base on workspace.  
+We gonna make git agent know when to use which account based on workspace.  
 If we are in `~/workspace/work`, it will use `~/workspace/work/.gitconfig`  
 If we are in `~/workspace/personal`, it will use `~/workspace/personal/.gitconfig`
 
@@ -65,11 +65,11 @@ Edit your `~/.gitconfig`
     path = ~/workspace/personal/.gitconfig
 ```
 
-includeIf part tells git agent to include .gitconfig in the specify path if we are in the specify gitdir. In this example, it means if you are working on any repository inside `~/workspace/work` directory, gitconfig from `~/workspace/work/.gitconfig` will be included.
+includeIf tells git agent to include .gitconfig in the specified path if we are in the specified gitdir.
 
 ## Config gitconfig for each account
 
-In `~/workspace/work/.gitconfig` and `~/workspace/personal/.gitconfig`, config based on git account sits here. We will config email/name and rewrite github host here.
+In `~/workspace/work/.gitconfig` and `~/workspace/personal/.gitconfig`, config based on a git account sits here. We will config email/name and rewrite github host here.
 
 ```ini
 [user]
@@ -88,7 +88,7 @@ Go to any git repository in your work workspace and your personal workspace. Run
 git config --get-all user.name
 ```
 
-## Ref
+## References
 
 1. https://gist.github.com/rahularity/86da20fe3858e6b311de068201d279e3
 2. https://stackoverflow.com/questions/4665337/git-pushing-to-remote-github-repository-as-wrong-user/12438179#12438179
