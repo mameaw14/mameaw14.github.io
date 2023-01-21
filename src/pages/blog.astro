@@ -8,62 +8,62 @@ import HorizontalLine from '../components/HorizontalLine.astro'
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
-  (a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
 )
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      ul {
-        list-style-type: none;
-        padding: unset;
-        margin: 0;
-      }
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			ul {
+				list-style-type: none;
+				padding: unset;
+				margin: 0;
+			}
 
-      ul li:hover {
-        /* background: var(--accent200); */
-      }
-      ul li time {
-        flex: 0 0 130px;
-        font-style: italic;
-        color: #595959;
-      }
-      ul li a:visited {
-        color: #8e32dc;
-      }
-      section {
-        margin: 0 -20px;
-      }
-      .bloglist-item-wrapper {
-        padding: var(--body-padding);
-        padding-bottom: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <section>
-        <HorizontalLine />
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <div>
-                  <div class="bloglist-item-wrapper">
-                    <BlogListItem post={post} />
-                  </div>
-                  <HorizontalLine />
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
+			ul li:hover {
+				/* background: var(--accent200); */
+			}
+			ul li time {
+				flex: 0 0 130px;
+				font-style: italic;
+				color: #595959;
+			}
+			ul li a:visited {
+				color: #8e32dc;
+			}
+			section {
+				margin: 0 -20px;
+			}
+			.bloglist-item-wrapper {
+				padding: var(--body-padding);
+				padding-bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<HorizontalLine />
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<div>
+									<div class="bloglist-item-wrapper">
+										<BlogListItem post={post} />
+									</div>
+									<HorizontalLine />
+								</div>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
 </html>

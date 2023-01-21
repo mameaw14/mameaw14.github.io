@@ -5,44 +5,43 @@ import { SITE_TITLE } from '../config'
 ---
 
 <header>
-  <div>
-    <h2 id="title">
-      <MMIconBox />&nbsp;
-      {SITE_TITLE}
-      <img src="/rabbit.svg" id="rabbit"/>
-    </h2>
-  </div>
-  <nav>
-    <HeaderLink href="/">🏠 ~</HeaderLink>
-    <HeaderLink href="/blog">🌳 blog</HeaderLink>
-    <HeaderLink href="/about">😋 about</HeaderLink>
-    <HeaderLink href="https://mastodon.world/@mameaw" target="_blank">mastodon</HeaderLink>
-    <HeaderLink href="https://github.com/mameaw14" target="_blank">github</HeaderLink>
-  </nav>
+	<div>
+		<h2 id="title">
+			<MMIconBox />&nbsp;
+			{SITE_TITLE}
+			<img src="/rabbit.svg" id="rabbit" />
+		</h2>
+	</div>
+	<nav>
+		<HeaderLink href="/">🏠 ~</HeaderLink>
+		<HeaderLink href="/blog">🌳 blog</HeaderLink>
+		<HeaderLink href="/about">😋 about</HeaderLink>
+		<HeaderLink href="https://mastodon.world/@mameaw" target="_blank">mastodon</HeaderLink>
+		<HeaderLink href="https://github.com/mameaw14" target="_blank">github</HeaderLink>
+	</nav>
 </header>
 <style>
-  header {
-    margin: 0em 0 2em;
-  }
-  h2 {
-    margin: 0.5em 0;
-  }
-  nav {
-    margin-top: 1.75em;
-  }
-  #title {
-    font-size: 2rem;
-    position: relative;
-  }
-  #rabbit {
-    position: absolute;
-    right: 50px;
-    transform: rotate(0.129rad);
-  }
-  @media only screen and (max-width: 600px) {
-    #rabbit {
-      display: none;
-    }
-  }
-
+	header {
+		margin: 0em 0 2em;
+	}
+	h2 {
+		margin: 0.5em 0;
+	}
+	nav {
+		margin-top: 1.75em;
+	}
+	#title {
+		font-size: 2rem;
+		position: relative;
+	}
+	#rabbit {
+		position: absolute;
+		right: 50px;
+		transform: rotate(0.129rad);
+	}
+	@media only screen and (max-width: 600px) {
+		#rabbit {
+			display: none;
+		}
+	}
 </style>
