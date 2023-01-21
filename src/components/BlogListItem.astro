@@ -6,34 +6,15 @@ const pubDate = BlogDate.fromDateString(post.frontmatter.pubDate).toDateString()
 ---
 
 <div>
-	<h3><a href={post.url} class="title">{post.frontmatter.title}</a></h3>
-	<small
-		><time datetime={post.frontmatter.pubDate}>
-			{pubDate}
-		</time>
-	</small>
-	<p class="description">{post.frontmatter.description}</p>
+	<h2 class="text-xl text-neutral-800"><a href={post.url}>{post.frontmatter.title}</a></h2>
+	<time datetime={post.frontmatter.pubDate} class="text-xs">
+		{pubDate}
+	</time>
+	<p class="text-sm text-neutral-500 my-4">{post.frontmatter.description}</p>
 </div>
 <style>
-	h3 {
-		line-height: 1.5;
-		margin: 0;
-		font-size: 24px;
-	}
-	small {
-		font-size: 14px;
-	}
 	div {
 		padding-bottom: 1em;
 		max-width: 60ch;
-	}
-	.title {
-		color: var(--black);
-		text-decoration: none;
-	}
-	.description {
-		font-size: 16px;
-
-		color: var(--gray400);
 	}
 </style>

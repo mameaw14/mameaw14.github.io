@@ -23,16 +23,6 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-				border-top: 1px solid #ddd;
-				margin: 1rem 0;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -40,25 +30,22 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 		<main>
 			<article>
 				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-				<h1 class="title">{title}</h1>
-				{
-					pubDate && (
-						<small>
-							<time datetime={pubDate}>{formattedPubDate}</time>
-						</small>
-					)
-				}
-				{
-					updatedDate && (
-						<span>
-							<small>
-								/ Last updated on <time datetime={updatedDate}>{formattedUpdatedDate}</time>
-							</small>
-						</span>
-					)
-				}
-				<hr />
-				<slot />
+				<h1 class="text-3xl leading-tight mb-4 text-neutral-800">{title}</h1>
+				<div class="text-sm mt-2">
+					{pubDate && <time datetime={pubDate}>{formattedPubDate}</time>}
+					{pubDate && updatedDate && '/'}
+					{
+						updatedDate && (
+							<span>
+								Last updated on <time datetime={updatedDate}>{formattedUpdatedDate}</time>
+							</span>
+						)
+					}
+				</div>
+				<hr class="border-t-border my-4" />
+				<div class="prose max-w-none prose-neutral">
+					<slot />
+				</div>
 			</article>
 		</main>
 		<Footer />

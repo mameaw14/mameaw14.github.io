@@ -6,7 +6,7 @@ import { SITE_TITLE } from '../config'
 
 <header>
 	<div>
-		<h2 id="title">
+		<h2 class="text-3xl relative text-neutral-800">
 			<MMIconBox />&nbsp;
 			{SITE_TITLE}
 			<img src="/rabbit.svg" id="rabbit" />
@@ -30,13 +30,10 @@ import { SITE_TITLE } from '../config'
 	nav {
 		margin-top: 1.75em;
 	}
-	#title {
-		font-size: 2rem;
-		position: relative;
-	}
 	#rabbit {
 		position: absolute;
 		right: 50px;
+		top: 0;
 		transform: rotate(0.129rad);
 	}
 	@media only screen and (max-width: 600px) {

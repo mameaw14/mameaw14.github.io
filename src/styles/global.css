@@ -10,54 +10,51 @@
 	--primary: #fffdf6;
 	--accent: #ff23bf;
 	--accent200: #fface7;
-	--black: #222;
 	--border: #222;
 	--gray400: #767676;
 	--body-padding: 20px;
 }
 
 html {
-	background-color: var(--primary);
 	background-image: url('/square-grid-pattern.png');
 	background-repeat: repeat;
 	background-size: 25px;
 }
 
 body {
-	font-family: 'Inter', 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
 	margin: auto;
+	max-width: 78ch;
 	padding: 20px;
-	max-width: 70ch;
 	text-align: left;
 	background-color: #fff;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	line-height: 1.5;
-	color: #444;
-	min-height: calc(100vh - 40px);
-	font-size: 18px;
+	min-height: 100vh;
 
 	border: 1px solid var(--border);
 	border-top: 0;
 	border-bottom: 0;
+	position: relative;
 }
+
 body:before {
 	content: ' ';
 	background-color: #fff;
 
-	max-width: calc(70ch + 50px);
+	height: 100%;
 	margin: auto;
-	position: fixed;
+	position: absolute;
 
 	z-index: -1;
 	top: 0;
-	left: 5px;
-	right: 5px;
+	left: -6px;
+	right: -6px;
 	bottom: 0;
 	border: 2px solid var(--border);
 	border-top: 0;
 	border-bottom: 0;
 }
+
 h1,
 h2,
 h3,
@@ -66,16 +63,16 @@ h5,
 h6,
 strong,
 b {
-	color: var(--black);
 	font-family: 'IBM Plex Serif', Inter, 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
 	font-weight: 600;
 }
 
 a {
-	color: #3273dc;
+	color: rgb(38, 38, 38);
 	transition: color 0.1s;
 	transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
 }
+
 a:hover {
 	color: var(--accent);
 }
@@ -117,7 +114,7 @@ pre {
 	font-size: 16px;
 }
 
-pre > code {
+pre>code {
 	all: unset;
 }
 
@@ -127,12 +124,4 @@ blockquote {
 	padding: 2px 0px 2px 20px;
 	margin: 0px;
 	font-style: italic;
-}
-
-.sans {
-	font-family: 'Inter', 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
-}
-
-.serif {
-	font-family: 'IBM Plex Serif', 'Trirong', 'ui-serif', 'system-ui', 'serif';
 }

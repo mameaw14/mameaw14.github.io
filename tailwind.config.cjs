@@ -1,8 +1,60 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
+		colors: {
+			primary: {
+				100: '#fffdf6',
+				500: '#fff8af'
+			},
+			secondary: {
+				200: '#fface7',
+				500: '#ff23bf'
+			},
+			gray: colors.neutral,
+			neutral: colors.neutral,
+			display: colors.neutral[700],
+			border: colors.neutral[700],
+			bg: '#fffdf6',
+		},
+		fontFamily: {
+			sans: ['Inter', ...defaultTheme.fontFamily.sans],
+			serif: ['IBM Plex Serif', 'Trirong', ...defaultTheme.fontFamily.serif],
+			mono: [...defaultTheme.fontFamily.mono]
+		},
+		extend: {
+			typography: {
+				DEFAULT: {
+					css: {
+						'code': {
+							fontWeight: 'normal',
+							fontFamily: defaultTheme.fontFamily.mono
+						},
+						'code::before': {
+							content: '""'
+						},
+						'code::after': {
+							content: '""'
+						}
+					}
+				}
+			}
+		}
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/typography'),
+	plugin(function ({ addBase, theme }) {
+		addBase({
+			'html': {
+				backgroundColor: theme('colors.bg'),
+				fontSize: 18,
+				lineHeight: 1.5,
+				color: theme('colors.display')
+			}
+		})
+	})
+	],
 }
