@@ -8,10 +8,12 @@ module.exports = {
 	theme: {
 		colors: {
 			primary: {
+				DEFAULT: '#fff8af',
 				100: '#fffdf6',
 				500: '#fff8af'
 			},
 			secondary: {
+				DEFAULT: '#ff23bf',
 				200: '#fface7',
 				500: '#ff23bf'
 			},

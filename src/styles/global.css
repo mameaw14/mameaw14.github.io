@@ -3,16 +3,11 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Trirong');
+@import url('https://fonts.googleapis.com/css?family=Trirong');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-	--primary: #fffdf6;
-	--accent: #ff23bf;
-	--accent200: #fface7;
 	--border: #222;
-	--gray400: #767676;
-	--body-padding: 20px;
 }
 
 html {
@@ -24,24 +19,26 @@ html {
 body {
 	margin: auto;
 	max-width: 78ch;
-	padding: 20px;
+	padding: 20px 20px 0 20px;
 	text-align: left;
 	background-color: #fff;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	min-height: 100vh;
+	min-height: 70vh;
+	margin-bottom: 50px;
 
 	border: 1px solid var(--border);
 	border-top: 0;
-	border-bottom: 0;
 	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 body:before {
 	content: ' ';
 	background-color: #fff;
 
-	height: 100%;
+	height: calc(100% + 12px);
 	margin: auto;
 	position: absolute;
 
@@ -52,7 +49,10 @@ body:before {
 	bottom: 0;
 	border: 2px solid var(--border);
 	border-top: 0;
-	border-bottom: 0;
+}
+
+footer {
+	margin-top: auto;
 }
 
 h1,
@@ -124,4 +124,9 @@ blockquote {
 	padding: 2px 0px 2px 20px;
 	margin: 0px;
 	font-style: italic;
+}
+
+.undo-body-padding {
+	margin-left: -20px;
+	margin-right: -20px;
 }
