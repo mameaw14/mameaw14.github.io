@@ -3,11 +3,11 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-@import url('https://fonts.googleapis.com/css?family=Trirong');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap');
 
 :root {
 	--border: #222;
+	--accent: #ff23bf;
 }
 
 html {
@@ -63,7 +63,7 @@ h5,
 h6,
 strong,
 b {
-	font-family: 'IBM Plex Serif', Inter, 'Trirong', 'ui-sans-serif', 'system-ui', 'sans-serif';
+	font-family: 'IBM Plex Serif', Inter, 'ui-sans-serif', 'system-ui', 'sans-serif';
 	font-weight: 600;
 }
 
