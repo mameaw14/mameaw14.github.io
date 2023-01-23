@@ -29,7 +29,7 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 		<Header />
 		<main class="mb-8">
 			<article>
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+				{heroImage && <img width="100%" height={360} src={heroImage} alt="" class="mb-4" />}
 				<h1 class="text-3xl leading-tight mb-4 text-neutral-800">{title}</h1>
 				<div class="text-sm mt-2">
 					{pubDate && <time datetime={pubDate}>{formattedPubDate}</time>}

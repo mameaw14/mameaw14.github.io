@@ -5,7 +5,7 @@ description: 'This method will automatically choose a git account to use based o
 pubDate: 2023-01-11 11:39:00 +0700
 updatedDate: 2023-01-22 03:48:00 +0700
 tags:
-  - programming
+  - coding
   - en
 ---
 
