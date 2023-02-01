@@ -1,0 +1,76 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import BlogListItem from '../components/BlogListItem.astro'
+import HorizontalLine from '../components/HorizontalLine.astro'
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob('./blog/exteen/*.{md,mdx,astro}'))
+	.filter((post) => !post.frontmatter.draft)
+	.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			ul {
+				list-style-type: none;
+				padding: unset;
+				margin: 0;
+			}
+			ul li time {
+				flex: 0 0 130px;
+				font-style: italic;
+				color: #595959;
+			}
+			ul li a:visited {
+				color: #8e32dc;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="pb-32">
+			<section>
+				<HorizontalLine />
+				<div class="prose max-w-none prose-neutral py-8">
+					<h1>Exteen Archive</h1>
+					<p>
+						สวัสดีค่ะทุกคนนน ^-^ ตรงนี้จะเป็น blog ที่ migrate มาจาก <b>http://mameaw14.exteen.com</b> ที่เหมี่ยวจะ active
+						ในช่วงปี 2007-2014 ตอนนั้นก็จะอยู่ช่วงประถม ขึ้นม.ต้น แล้วก็ม.ปลายค่ะ
+					</p><p>
+						ก็จะได้มาส่วนหนึ่งนะคะ ไม่ครบทุกตอนที่เคยเขียน เนื้อหาบางส่วนก็แอบเอาออกไปค่ะ cringe ไม่ไหว 5555
+						กู้ข้อมูลมาจาก
+						<a href="https://web.archive.org/web/*/http://mameaw14.exteen.com/*" target="_blank">archive.org</a>
+					</p>
+					<p style="text-align: right;">
+						<span>มะเหมี่ยว</span><br />
+						<span>1 Feb 2023</span>
+					</p>
+				</div>
+				<HorizontalLine />
+
+				<ul>
+					{
+						posts.map((post) => (
+							<li>
+								<div>
+									<div class="my-4">
+										<BlogListItem post={post} />
+									</div>
+									<HorizontalLine />
+								</div>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<Footer />
+		</main>
+	</body>
+</html>
