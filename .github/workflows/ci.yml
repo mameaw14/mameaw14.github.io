@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -11,11 +11,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 env:
-  BUILD_PATH: "."
+  BUILD_PATH: '.'
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: '18'
           cache: npm
           cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
       - name: Install dependencies
@@ -46,6 +46,8 @@ jobs:
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
