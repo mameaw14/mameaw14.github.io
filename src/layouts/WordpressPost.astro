@@ -3,26 +3,10 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { BlogDate } from '../utils/BlogDate'
+import type { Post } from '../types/Post'
 
-export interface Props {
-	content: {
-		title: string
-		description: string
-		pubDate?: string
-		updatedDate?: string
-		heroImage?: string
-	}
-}
-
-const { slug } = Astro.params
-const res = await fetch(`${import.meta.env.WP_URL}/wp-json/wp/v2/posts?slug=${slug}&_embed`)
-const [post] = await res.json()
-const title = post.title.rendered
-const description = post.excerpt.rendered
-const pubDate = post.date
-const updatedDate = post.modified
-const heroImage = post._embedded['wp:featuredmedia']?.['0'].source_url || ''
-const content = post.content.rendered
+const { post }: { post: Post } = Astro.props as any
+const { title, description, pubDate, updatedDate, heroImage, content } = post
 
 const formattedPubDate = pubDate ? BlogDate.fromDateString(pubDate).toDateString() : ''
 const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() : ''

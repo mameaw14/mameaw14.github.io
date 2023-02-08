@@ -1,4 +1,4 @@
-import { fromWPPost } from './post'
+import { PostUtils } from './post'
 
 describe('post', () => {
 	const mockWpPost = {
@@ -191,8 +191,8 @@ describe('post', () => {
 		},
 	}
 
-	it('should convert wordpress post to post', () => {
-		const post = fromWPPost(mockWpPost)
+	it('should extract wordpress post to post', () => {
+		const post = PostUtils.fromWPPost(mockWpPost)
 
 		expect(post).toEqual({
 			title: 'Hello world!',
@@ -204,11 +204,19 @@ describe('post', () => {
 			slug: 'hello-world',
 			heroImage: 'http://wp.local/wp-content/uploads/2023/02/feature-image.png',
 			url: '/blog/wordpress/hello-world',
+			comments: [
+				{
+					name: 'A WordPress Commenter',
+					website: 'https://wordpress.org/',
+					date: '2023-02-05T17:00:00',
+					content: '<p>Hi, this is a comment.</p>',
+				},
+			],
 		})
 	})
 
 	it('should tolerate empty data', () => {
-		const post = fromWPPost({})
+		const post = PostUtils.fromWPPost({})
 
 		expect(post).toEqual({
 			title: '',
@@ -220,6 +228,12 @@ describe('post', () => {
 			slug: '',
 			heroImage: '',
 			url: '/blog/wordpress/undefined',
+			comments: [],
+		})
+	})
+	describe('get link', () => {
+		it('should extract comment link', () => {
+			expect(PostUtils.getCommentUrl(mockWpPost)).toBe('http://wp.local/wp-json/wp/v2/comments?post=1')
 		})
 	})
 })

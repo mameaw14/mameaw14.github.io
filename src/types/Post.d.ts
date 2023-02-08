@@ -1,3 +1,5 @@
+import type { Comment } from './Comment'
+
 export type Post = {
 	title: string
 	description: string
@@ -8,4 +10,5 @@ export type Post = {
 	tags: string[]
 	slug: string
 	url: string
+	comments: Comment[]
 }
