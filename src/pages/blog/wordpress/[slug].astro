@@ -1,0 +1,15 @@
+---
+import Layout from '../../../layouts/WordpressPost.astro'
+
+export async function getStaticPaths() {
+	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')
+	let posts = await data.json()
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post: post },
+	}))
+}
+---
+
+<Layout />
