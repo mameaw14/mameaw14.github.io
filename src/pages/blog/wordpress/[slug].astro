@@ -1,6 +1,8 @@
 ---
 import Layout from '../../../layouts/WordpressPost.astro'
-import { PostUtils } from '../../../utils/post'
+import { PostReader } from '../../../utils/post'
+import { Comments } from '../../../components/Comments.jsx'
+import { CommentReader } from '../../../utils/comment'
 
 export async function getStaticPaths() {
 	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')
@@ -15,15 +17,9 @@ export async function getStaticPaths() {
 const { slug } = Astro.params
 
 const res = await fetch(`${import.meta.env.WP_URL}/wp-json/wp/v2/posts?slug=${slug}&_embed`)
-const url = `${import.meta.env.WP_URL}/wp-json/wp/v2/posts?slug=${slug}&_embed`
 const [wpPost] = await res.json()
-const post = PostUtils.fromWPPost(wpPost)
+const postReader = new PostReader(new CommentReader())
+const post = postReader.fromWPPost(wpPost)
 ---
 
-<!-- <script define:vars={{ url }}>
-	const main = async () => {
-		const res = await fetch(url)
-	}
-	main()
-</script> -->
 <Layout post={post} />

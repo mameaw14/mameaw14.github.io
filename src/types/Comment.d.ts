@@ -3,4 +3,5 @@ export type Comment = {
 	website: string
 	date: string
 	content: string
+	avatarUrl: string
 }

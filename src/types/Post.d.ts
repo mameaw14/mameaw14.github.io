@@ -10,5 +10,6 @@ export type Post = {
 	tags: string[]
 	slug: string
 	url: string
+	commentUrl: string
 	comments: Comment[]
 }
