@@ -48,6 +48,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
         env:
           WP_URL: ${{ secrets.WP_URL }}
+          PUBLIC_WP_URL: ${{ secrets.PUBLIC_WP_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
