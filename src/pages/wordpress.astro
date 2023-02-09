@@ -5,11 +5,12 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
 import BlogListItem from '../components/WPBlogListItem.astro'
 import HorizontalLine from '../components/HorizontalLine.astro'
-import { PostUtils } from '../utils/post'
+import { PostReader } from '../utils/post'
 import type { Post } from '../types/Post'
+import { CommentReader } from '../utils/comment'
 
 let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link,date,slug')
-let posts = (await data.json()).map(PostUtils.fromWPPost)
+let posts = (await data.json()).map(new PostReader(new CommentReader()).fromWPPost)
 ---
 
 <!DOCTYPE html>

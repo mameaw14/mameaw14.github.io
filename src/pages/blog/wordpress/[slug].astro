@@ -1,14 +1,14 @@
 ---
 import Layout from '../../../layouts/WordpressPost.astro'
 import { PostReader } from '../../../utils/post'
-import { Comments } from '../../../components/Comments.jsx'
 import { CommentReader } from '../../../utils/comment'
+import type { Post } from '../../../types/Post'
 
 export async function getStaticPaths() {
 	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')
 	let posts = await data.json()
 
-	return posts.map((post) => ({
+	return posts.map((post: Post) => ({
 		params: { slug: post.slug },
 		props: { post: post },
 	}))
