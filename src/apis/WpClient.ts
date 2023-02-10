@@ -24,8 +24,8 @@ export class WpClient {
 	}
 
 	async getPosts(params?: GetPostParams) {
-		const q = params?.fields ? `?_fields=${params?.fields.concat(',')}` : ''
-		const result = await fetch(this.apiUrl + `/wp/v2/posts${q}`)
+		const q = params?.fields ? `?_fields=${params?.fields.join(',')}` : ''
+		const result = await fetch(this.apiUrl + `/wp/v2/posts` + q)
 		return result.json()
 	}
 	async createComment(postId: number, commentData: CreateCommentData): Promise<CreateCommentRes> {

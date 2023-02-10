@@ -8,7 +8,7 @@ const wpClient = new WpClient(import.meta.env.PUBLIC_WP_URL)
 const Input = (props: any) => {
 	return (
 		<input
-			className="block border-2 border-border px-2 py-1"
+			className="block border-2 border-border px-2 py-2 text-base"
 			style={{ boxShadow: 'inset 5px 4px 11px rgba(0, 0, 0, 0.05)' }}
 			{...props}
 		/>
@@ -18,7 +18,7 @@ const Input = (props: any) => {
 const Textarea = (props: any) => {
 	return (
 		<textarea
-			className="block border-2 border-border px-2 py-1"
+			className="block border-2 border-border px-2 py-2 text-base"
 			style={{ boxShadow: 'inset 5px 4px 11px rgba(0, 0, 0, 0.05)' }}
 			{...props}
 		/>
@@ -71,7 +71,7 @@ export const CommentForm = ({
 			<label htmlFor="website" className="block mt-4">
 				Website
 			</label>
-			<Input id="website" name="website" type="text" />
+			<Input id="website" name="website" type="url" />
 
 			<label htmlFor="email" className="block mt-4">
 				Email (will be hidden)
@@ -82,7 +82,7 @@ export const CommentForm = ({
 				Post Comment
 			</button>
 
-			{message && <div className="text-red-800">{message}</div>}
+			{message && <div className="text-red-800" dangerouslySetInnerHTML={{ __html: message }} />}
 		</form>
 	)
 }

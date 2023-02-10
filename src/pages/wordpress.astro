@@ -12,7 +12,7 @@ import { WpClient } from '../apis/WpClient'
 
 const wpClient = new WpClient(import.meta.env.WP_URL)
 let data = await wpClient.getPosts({fields:['author','id','excerpt','title','link','date','slug']})
-let posts = (await data.json()).map(new PostReader(new CommentReader()).fromWPPost)
+let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
 ---
 
 <!DOCTYPE html>

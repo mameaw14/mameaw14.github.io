@@ -7,7 +7,7 @@ import type { Post } from '../../../types/Post'
 export async function getStaticPaths() {
 	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')
 	let posts = await data.json()
-
+console.log(posts)
 	return posts.map((post: Post) => ({
 		params: { slug: post.slug },
 		props: { post: post },
