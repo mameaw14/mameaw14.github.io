@@ -9,7 +9,8 @@ export class PostReader {
 	}
 
 	fromWPPost = (wpPost: any): Post => {
-		const post: Post = {
+		return {
+			id: wpPost?.id || undefined,
 			title: wpPost?.title?.rendered || '',
 			description: wpPost?.excerpt?.rendered || '',
 			pubDate: wpPost?.date || '',
@@ -22,6 +23,5 @@ export class PostReader {
 			commentUrl: wpPost?._links?.replies?.[0]?.href || '',
 			comments: wpPost?._embedded?.replies?.[0]?.map(this.commentReader.fromWPComment) || [],
 		}
-		return post
 	}
 }

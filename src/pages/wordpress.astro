@@ -8,8 +8,10 @@ import HorizontalLine from '../components/HorizontalLine.astro'
 import { PostReader } from '../utils/post'
 import type { Post } from '../types/Post'
 import { CommentReader } from '../utils/comment'
+import { WpClient } from '../apis/WpClient'
 
-let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts?_fields=author,id,excerpt,title,link,date,slug')
+const wpClient = new WpClient(import.meta.env.WP_URL)
+let data = await wpClient.getPosts({fields:['author','id','excerpt','title','link','date','slug']})
 let posts = (await data.json()).map(new PostReader(new CommentReader()).fromWPPost)
 ---
 

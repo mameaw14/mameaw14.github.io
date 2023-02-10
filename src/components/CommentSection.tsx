@@ -2,25 +2,27 @@ import { useCallback, useEffect, useState } from 'react'
 import { CommentReader } from '../utils/comment'
 import type { Post } from '../types/Post'
 import { CommentForm } from './CommentForm'
+import { WpClient } from '../apis/WpClient'
 
 const commentReader = new CommentReader()
+const wpClient = new WpClient(import.meta.env.PUBLIC_WP_URL)
 
 export const CommentSection = ({ post }: { post: Post }) => {
-	const [comments, setComments] = useState(post.comments)
+	const [comments, setComments] = useState([])
 
-	const refetchComments = useCallback(() => {
-		fetch(post.commentUrl)
-			.then((response) => response.json())
-			.then((data) => {
-				setComments(data?.map(commentReader.fromWPComment))
-			})
+	const fetchComments = useCallback(() => {
+		wpClient.getCommentsByPostId(post.id).then((data) => {
+			setComments(data?.map(commentReader.fromWPComment))
+		})
 	}, [])
+
+	useEffect(fetchComments, [])
 
 	return (
 		<div>
 			<h2>comments</h2>
 			<div className="not-prose">
-				<CommentForm commentCallback={refetchComments} />
+				<CommentForm post={post} commentCallback={fetchComments} />
 			</div>
 			<hr className="border-t-border my-4" />
 

@@ -1,6 +1,7 @@
 import type { Comment } from './Comment'
 
 export type Post = {
+	id: number
 	title: string
 	description: string
 	content: string

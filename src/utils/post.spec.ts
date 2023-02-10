@@ -1,6 +1,5 @@
-import type { Post } from '../types/Post'
-import { CommentReader } from './comment'
 import { PostReader } from './post'
+
 const mockWpPost = {
 	id: 1,
 	date: '2023-02-05T17:00:00',
@@ -211,6 +210,7 @@ describe('post', () => {
 		expect(mockCommentReader.fromWPComment).toBeCalled()
 
 		expect(post).toEqual({
+			id: 1,
 			title: 'Hello world!',
 			description: '<p>Welcome. Hello, World.</p>\n',
 			content: '\n<p>Welcome. Hello, World.</p>\n',
@@ -237,6 +237,7 @@ describe('post', () => {
 		const post = postReader.fromWPPost({})
 
 		expect(post).toEqual({
+			id: undefined,
 			title: '',
 			description: '',
 			content: '',
