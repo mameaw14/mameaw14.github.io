@@ -7,11 +7,13 @@ import type { Post } from '../../../types/Post'
 export async function getStaticPaths() {
 	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')
 	let posts = await data.json()
-console.log(posts)
-	return posts.map((post: Post) => ({
-		params: { slug: post.slug },
-		props: { post: post },
-	}))
+	return posts.map((post: Post) => {
+		console.log(post.slug)
+		return {
+			params: { slug: decodeURI(post.slug) },
+			props: { post: post },
+		}
+	})
 }
 
 const { slug } = Astro.params
