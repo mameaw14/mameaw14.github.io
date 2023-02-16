@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import { BlogDate } from '../utils/BlogDate'
 import type { Post } from '../types/Post'
 import { CommentSection } from '../components/CommentSection'
+import '../styles/wp.css'
 
 const { post }: { post: Post } = Astro.props as any
 const { title, description, pubDate, updatedDate, heroImage, content } = post

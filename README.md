@@ -15,3 +15,8 @@ Node LTS version (18)
 ### Build
 
 `npm run build`
+
+## ETC
+### WordPress editor
+__Can't put code block in list item level__  
+put class `indent-1` to fix it
