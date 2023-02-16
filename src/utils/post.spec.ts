@@ -1,4 +1,5 @@
-import { PostReader } from './post'
+import { PostReader } from './post.js'
+import { jest } from '@jest/globals'
 
 const mockWpPost = {
 	id: 1,
@@ -192,7 +193,7 @@ const mockWpPost = {
 
 describe('post', () => {
 	const mockCommentReader = {
-		fromWPComment: jest.fn(),
+		fromWPComment: jest.fn<() => any>(),
 	}
 	const postReader = new PostReader(mockCommentReader)
 

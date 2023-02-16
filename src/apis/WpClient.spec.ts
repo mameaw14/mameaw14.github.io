@@ -1,4 +1,5 @@
-import { WpClient } from './WpClient'
+import { WpClient } from './WpClient.js'
+import { expect, jest } from '@jest/globals'
 
 const mockFetchRes = (res: any) => {
 	return {
@@ -8,7 +9,7 @@ const mockFetchRes = (res: any) => {
 
 describe('Wordpress client', () => {
 	const client = new WpClient('https://wp.local')
-	const mockFetch = jest.fn()
+	const mockFetch = jest.fn<() => Promise<any>>()
 	global.fetch = mockFetch
 
 	beforeEach(() => {
@@ -35,6 +36,16 @@ describe('Wordpress client', () => {
 
 			expect(mockFetch).toBeCalledWith(expect.stringContaining('_fields=author,id'))
 			expect(result).toEqual(['post1', 'post2'])
+		})
+
+		it('should get posts by category', async () => {
+			mockFetch.mockResolvedValueOnce(mockFetchRes(['cooking1', 'cooking2']))
+
+			const result = await client.getPosts({
+				categories: ['cooking'],
+			})
+			expect(mockFetch).toBeCalledWith(expect.stringContaining('categories=cooking'))
+			expect(result).toEqual(['cooking1', 'cooking2'])
 		})
 
 		it.skip('should get post by slug', () => {

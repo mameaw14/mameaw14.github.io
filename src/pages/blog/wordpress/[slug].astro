@@ -1,8 +1,8 @@
 ---
 import Layout from '../../../layouts/WordpressPost.astro'
-import { PostReader } from '../../../utils/post'
-import { CommentReader } from '../../../utils/comment'
-import type { Post } from '../../../types/Post'
+import { PostReader } from '../../../utils/post.js'
+import { CommentReader } from '../../../utils/comment.js'
+import type { Post } from '../../../types/Post.js'
 
 export async function getStaticPaths() {
 	let data = await fetch(import.meta.env.WP_URL + '/wp-json/wp/v2/posts')

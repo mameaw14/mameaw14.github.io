@@ -1,5 +1,5 @@
-import type { Post } from '../types/Post'
-import type { CommentReader } from './comment'
+import type { Post } from '../types/Post.js'
+import type { CommentReader } from './comment.js'
 
 export class PostReader {
 	commentReader: CommentReader

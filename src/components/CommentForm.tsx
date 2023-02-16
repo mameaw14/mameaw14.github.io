@@ -1,5 +1,5 @@
-import { CreateCommentRes, WpClient } from '../apis/WpClient'
-import type { Post } from '../types/Post'
+import { CreateCommentRes, WpClient } from '../apis/WpClient.js'
+import type { Post } from '../types/Post.js'
 import type React from 'react'
 import { useCallback, useState } from 'react'
 

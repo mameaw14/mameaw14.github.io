@@ -1,4 +1,4 @@
-import { BlogDate } from './BlogDate'
+import { BlogDate } from './BlogDate.js'
 
 describe(`Blog Date`, () => {
 	it(`should init BlogDate`, () => {

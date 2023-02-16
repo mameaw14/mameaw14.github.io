@@ -1,4 +1,4 @@
-import type { Comment } from '../types/Comment'
+import type { Comment } from '../types/Comment.js'
 
 export class CommentReader {
 	fromWPComment = (wpComment: any) => {

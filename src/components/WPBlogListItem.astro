@@ -1,6 +1,6 @@
 ---
-import type { Post } from '../types/Post'
-import { BlogDate } from '../utils/BlogDate'
+import type { Post } from '../types/Post.js'
+import { BlogDate } from '../utils/BlogDate.js'
 
 const { post }: { post: Post } = Astro.props as any
 const pubDate = BlogDate.fromDateString(post.pubDate).toDateString()

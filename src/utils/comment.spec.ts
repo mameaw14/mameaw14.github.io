@@ -1,4 +1,4 @@
-import { CommentReader } from './comment'
+import { CommentReader } from './comment.js'
 
 const mockComment = {
 	id: 2,

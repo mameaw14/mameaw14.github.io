@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
-import { CommentReader } from '../utils/comment'
-import type { Post } from '../types/Post'
-import { CommentForm } from './CommentForm'
-import { WpClient } from '../apis/WpClient'
+import { CommentReader } from '../utils/comment.js'
+import type { Post } from '../types/Post.js'
+import { CommentForm } from './CommentForm.js'
+import { WpClient } from '../apis/WpClient.js'
 
 const commentReader = new CommentReader()
 const wpClient = new WpClient(import.meta.env.PUBLIC_WP_URL)
