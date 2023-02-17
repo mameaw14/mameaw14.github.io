@@ -2,14 +2,20 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
-import BlogListItem from '../components/BlogListItem.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config.js'
+import BlogListItem from '../components/WPBlogListItem.astro'
 import HorizontalLine from '../components/HorizontalLine.astro'
+import { PostReader } from '../utils/post.js'
+import type { Post } from '../types/Post.js'
+import { CommentReader } from '../utils/comment.js'
+import { WpClient } from '../apis/WpClient.js'
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob('./blog/*.{md,mdx,astro}')).sort(
-	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-)
+const wpClient = new WpClient(import.meta.env.WP_URL)
+let data = await wpClient.getPosts({
+	fields: ['author', 'id', 'excerpt', 'title', 'link', 'date', 'slug'],
+	categories: ['21'],
+})
+let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
 ---
 
 <!DOCTYPE html>
@@ -39,7 +45,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx,astro}')).sort(
 				<HorizontalLine />
 				<ul>
 					{
-						posts.map((post) => (
+						posts.map((post: Post) => (
 							<li>
 								<div>
 									<div class="my-4">

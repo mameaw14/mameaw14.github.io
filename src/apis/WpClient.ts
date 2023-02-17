@@ -31,7 +31,11 @@ export class WpClient {
 			categories: params?.categories,
 		}
 		const q = queryString.stringify(qsObj, { arrayFormat: 'comma' })
-		const result = await fetch(this.apiUrl + `/wp/v2/posts?` + q)
+
+		const url = this.apiUrl + `/wp/v2/posts?` + q
+		console.info('[fetch]', url)
+
+		const result = await fetch(url)
 		return result.json()
 	}
 	async createComment(postId: number, commentData: CreateCommentData): Promise<CreateCommentRes> {

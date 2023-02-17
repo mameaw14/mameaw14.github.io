@@ -220,7 +220,7 @@ describe('post', () => {
 			tags: [],
 			slug: 'hello-world',
 			heroImage: 'http://wp.local/wp-content/uploads/2023/02/feature-image.png',
-			url: '/blog/wordpress/hello-world',
+			url: '/blog/hello-world',
 			commentUrl: 'http://wp.local/wp-json/wp/v2/comments?post=1',
 			comments: [
 				{
@@ -247,7 +247,7 @@ describe('post', () => {
 			tags: [],
 			slug: '',
 			heroImage: '',
-			url: '/blog/wordpress/undefined',
+			url: '/blog/undefined',
 			commentUrl: '',
 			comments: [],
 		})

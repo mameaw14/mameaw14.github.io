@@ -19,7 +19,7 @@ export class PostReader {
 			slug: wpPost?.slug || '',
 			heroImage: wpPost?._embedded?.['wp:featuredmedia']?.['0'].source_url || '',
 			content: wpPost?.content?.rendered || '',
-			url: `/blog/wordpress/${wpPost.slug}`,
+			url: `/blog/${wpPost.slug}`,
 			commentUrl: wpPost?._links?.replies?.[0]?.href || '',
 			comments: wpPost?._embedded?.replies?.[0]?.map(this.commentReader.fromWPComment) || [],
 		}
