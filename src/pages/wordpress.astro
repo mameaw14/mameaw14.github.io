@@ -11,7 +11,10 @@ import { CommentReader } from '../utils/comment.js'
 import { WpClient } from '../apis/WpClient.js'
 
 const wpClient = new WpClient(import.meta.env.WP_URL)
-let data = await wpClient.getPosts({fields:['author','id','excerpt','title','link','date','slug']})
+let data = await wpClient.getPosts({
+	fields: ['author', 'id', 'excerpt', 'title', 'link', 'date', 'slug'],
+	categories: ['21'],
+})
 let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
 ---
 
