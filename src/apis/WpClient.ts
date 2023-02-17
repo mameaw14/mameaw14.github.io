@@ -33,7 +33,6 @@ export class WpClient {
 		const q = queryString.stringify(qsObj, { arrayFormat: 'comma' })
 
 		const url = this.apiUrl + `/wp/v2/posts?` + q
-		console.info('[fetch]', url)
 
 		const result = await fetch(url)
 		return result.json()
