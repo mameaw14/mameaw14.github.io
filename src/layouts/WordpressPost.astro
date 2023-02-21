@@ -16,7 +16,7 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={heroImage} />
 		<link rel="stylesheet" href={import.meta.env.WP_URL + '/wp-includes/css/dist/block-library/style.min.css'} />
 		<link rel="stylesheet" href={import.meta.env.WP_URL + '/wp-content/plugins/code-block-pro/build/style-index.css'} />
 		<script async src={import.meta.env.WP_URL + '/wp-content/plugins/code-block-pro/build/front/front.js'}></script>
@@ -26,7 +26,7 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 		<Header />
 		<main class="mb-8">
 			<article>
-				{heroImage && <img max-width="100%" max-height="360px" src={heroImage} alt="" class="mb-4" />}
+				{heroImage && <img src={heroImage} alt={title} class=" w-full object-cover mb-4 max-h-80" />}
 				<h1 class="text-3xl leading-tight mb-4 text-neutral-800">{title}</h1>
 				<div class="text-sm mt-2">
 					{pubDate && <time datetime={pubDate}>{formattedPubDate}</time>}
