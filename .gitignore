@@ -23,3 +23,6 @@ pnpm-debug.log*
 .vscode
 
 public/ignore
+/test-results/
+/playwright-report/
+/playwright/.cache/
