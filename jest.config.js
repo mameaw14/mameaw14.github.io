@@ -6,6 +6,7 @@ export default {
 	moduleNameMapper: {
 		'^(\\.{1,2}/.*)\\.js$': '$1',
 	},
+	testMatch: ['<rootDir>/src/**/*.spec.[tj]s'],
 	transform: {
 		// '^.+\\.[tj]sx?$' to process js/ts with `ts-jest`
 		// '^.+\\.m?[tj]sx?$' to process js/ts/mjs/mts with `ts-jest`
