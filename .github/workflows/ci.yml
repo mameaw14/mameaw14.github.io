@@ -38,22 +38,22 @@ jobs:
         id: unit-test
         run: npm test
         working-directory: ${{ env.BUILD_PATH }}
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npm run test:e2e
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
       - name: Build with Astro
         run: |
-          npx --no-install astro build \
+          npm run build -- \
             --site "${{ steps.pages.outputs.origin }}" \
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
         env:
           WP_URL: ${{ secrets.WP_URL }}
           PUBLIC_WP_URL: ${{ secrets.PUBLIC_WP_URL }}
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npm run test:e2e
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

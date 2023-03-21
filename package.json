@@ -11,7 +11,7 @@
 		"astro": "astro",
 		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
 		"test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
-		"test:e2e": "playwright test"
+		"test:e2e": "DEBUG=pw:webserver playwright test"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^0.18.0",
