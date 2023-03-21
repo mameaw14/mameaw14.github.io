@@ -13,6 +13,6 @@ test('blog link', async ({ page }) => {
 	// Click the get started link.
 	await page.getByRole('link', { name: 'blog' }).click()
 
-	// Expects the URL to contain intro.
-	await expect(page).toHaveURL(/.*shouldfail/)
+	// Expects the URL to contain blog.
+	await expect(page).toHaveURL(/.*blog/)
 })
