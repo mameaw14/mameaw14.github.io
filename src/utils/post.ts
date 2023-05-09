@@ -17,7 +17,7 @@ export class PostReader {
 			updatedDate: wpPost?.modified || '',
 			tags: wpPost?.tags || [],
 			slug: wpPost?.slug || '',
-			heroImage: wpPost?._embedded?.['wp:featuredmedia']?.['0'].source_url || '',
+			heroImage: wpPost?._embedded?.['wp:featuredmedia']?.['0'].source_url || undefined,
 			content: wpPost?.content?.rendered || '',
 			url: `/blog/${wpPost.slug}`,
 			commentUrl: wpPost?._links?.replies?.[0]?.href || '',

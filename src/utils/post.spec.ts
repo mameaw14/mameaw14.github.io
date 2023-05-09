@@ -246,7 +246,7 @@ describe('post', () => {
 			updatedDate: '',
 			tags: [],
 			slug: '',
-			heroImage: '',
+			heroImage: undefined,
 			url: '/blog/undefined',
 			commentUrl: '',
 			comments: [],
