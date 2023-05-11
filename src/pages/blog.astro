@@ -9,11 +9,12 @@ import { PostReader } from '../utils/post.js'
 import type { Post } from '../types/Post.js'
 import { CommentReader } from '../utils/comment.js'
 import { WpClient } from '../apis/WpClient.js'
+import { CATEGORIES } from '../consts/wp'
 
 const wpClient = new WpClient(import.meta.env.WP_URL)
 let data = await wpClient.getPosts({
 	fields: ['author', 'id', 'excerpt', 'title', 'link', 'date', 'slug'],
-	categories: ['21'],
+	categories: [CATEGORIES.TECH, CATEGORIES.POLITICS],
 })
 let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
 ---
@@ -28,11 +29,13 @@ let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
 				padding: unset;
 				margin: 0;
 			}
+
 			ul li time {
 				flex: 0 0 130px;
 				font-style: italic;
 				color: #595959;
 			}
+
 			ul li a:visited {
 				color: #8e32dc;
 			}

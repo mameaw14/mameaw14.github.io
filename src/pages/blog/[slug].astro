@@ -4,11 +4,12 @@ import { PostReader } from '../../utils/post.js'
 import { CommentReader } from '../../utils/comment.js'
 import type { Post } from '../../types/Post.js'
 import { WpClient } from '../../apis/WpClient.js'
+import { CATEGORIES } from '../../consts/wp'
 
 export async function getStaticPaths() {
 	const wpClient = new WpClient(import.meta.env.WP_URL)
 	let posts = await wpClient.getPosts({
-		categories: ['21'],
+		categories: [CATEGORIES.TECH, CATEGORIES.TEST, CATEGORIES.POLITICS],
 	})
 	return posts.map((post: Post) => {
 		return {

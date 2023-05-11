@@ -6,6 +6,12 @@ personal website
 
 Node LTS version (18)
 
+## Setup Local
+Install Playwright
+```shell
+npx playwright install
+```
+
 ## Command
 
 ### Run
