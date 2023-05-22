@@ -14,7 +14,7 @@
 		"test:e2e": "DEBUG=pw:webserver playwright test"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^0.18.2",
+		"@astrojs/mdx": "^0.19.2",
 		"@astrojs/react": "^2.1.3",
 		"@astrojs/rss": "^2.4.1",
 		"@astrojs/sitemap": "^1.2.1",
