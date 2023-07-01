@@ -25,6 +25,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -38,22 +39,41 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+#      - name: Cache playwright browsers
+#        id: cache-npm
+#        uses: actions/cache@v3
+#        env:
+#          cache-name: cache-playwright-browsers
+#        with:
+#          # playwright-browsers cache files are stored in `~/.cache/ms-playwright` on Linux
+#          path: ~/.cache/ms-playwright
+#          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+#          restore-keys: |
+#            ${{ runner.os }}-build-${{ env.cache-name }}-
+#            ${{ runner.os }}-build-
+#            ${{ runner.os }}-
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: npm
           cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
+
       - name: Install dependencies
         run: npm ci
         working-directory: ${{ env.BUILD_PATH }}
+
       - name: Unit Tests
         id: unit-test
         run: npm test
         working-directory: ${{ env.BUILD_PATH }}
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+
       - name: Build with Astro
         run: |
           npm run build -- \
@@ -63,10 +83,13 @@ jobs:
         env:
           WP_URL: ${{ secrets.WP_URL }}
           PUBLIC_WP_URL: ${{ secrets.PUBLIC_WP_URL }}
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests
         run: npm run test:e2e
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
