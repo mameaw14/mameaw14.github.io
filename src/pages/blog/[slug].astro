@@ -9,7 +9,7 @@ import { CATEGORIES } from '../../consts/wp'
 export async function getStaticPaths() {
 	const wpClient = new WpClient(import.meta.env.WP_URL)
 	let posts = await wpClient.getPosts({
-		categories: [CATEGORIES.TECH, CATEGORIES.TEST, CATEGORIES.POLITICS],
+		categories: [CATEGORIES.TECH, CATEGORIES.TEST, CATEGORIES.POLITICS, CATEGORIES.LIFE],
 	})
 	return posts.map((post: Post) => {
 		return {
