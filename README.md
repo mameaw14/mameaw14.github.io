@@ -22,6 +22,19 @@ npx playwright install
 
 `npm run build`
 
+### Test
+
+#### Unit Tests
+```shell
+npm run test
+```
+
+#### E2E Tests
+```shell
+npm run build
+npm run test:e2e
+```
+
 ## ETC
 ### WordPress editor
 __Can't put code block in list item level__  
