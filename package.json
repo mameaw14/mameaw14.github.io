@@ -29,7 +29,7 @@
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.6.2",
-		"@playwright/test": "^1.37.0",
+		"@playwright/test": "^1.37.1",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/jest": "^29.5.3",
 		"@types/react": "^18.2.20",
