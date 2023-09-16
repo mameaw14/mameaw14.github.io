@@ -17,7 +17,7 @@
 		"@astrojs/mdx": "^0.19.7",
 		"@astrojs/react": "^2.3.2",
 		"@astrojs/rss": "^3.0.0",
-		"@astrojs/sitemap": "^2.0.2",
+		"@astrojs/sitemap": "^3.0.0",
 		"@astrojs/tailwind": "^4.0.0",
 		"astro": "^2.10.7",
 		"markdown-it": "^13.0.1",
