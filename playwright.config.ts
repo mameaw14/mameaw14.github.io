@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
 	webServer: {
 		command: 'npm run preview',
-		url: 'http://localhost:3000',
+		url: 'http://localhost:4321',
 		timeout: 120 * 1000,
 		reuseExistingServer: !process.env.CI,
 	},
@@ -41,7 +41,7 @@ export default defineConfig({
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
 		actionTimeout: 0,
 		/* Base URL to use in actions like `await page.goto('/')`. */
-		baseURL: 'http://localhost:3000',
+		baseURL: 'http://localhost:4321',
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: 'on-first-retry',
