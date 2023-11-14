@@ -4,4 +4,5 @@ export const CATEGORIES = {
 	TEST: '27',
 	POLITICS: '32',
 	LIFE: '33',
+	FUJIFILM_RECIPE: '34'
 }
