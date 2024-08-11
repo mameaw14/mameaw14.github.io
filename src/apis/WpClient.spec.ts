@@ -24,6 +24,7 @@ describe('Wordpress client', () => {
 
 			expect(mockFetch).toBeCalled()
 			expect(mockFetch).toBeCalledWith(expect.not.stringContaining('?_fields'))
+			expect(mockFetch).toBeCalledWith(expect.stringContaining('?per_page=100'))
 			expect(result).toEqual({ posts: ['post1', 'post2'] })
 		})
 

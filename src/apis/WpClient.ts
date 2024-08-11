@@ -18,6 +18,7 @@ export type CreateCommentRes = {
 		status: number
 	}
 }
+
 export class WpClient {
 	apiUrl: string
 
@@ -29,6 +30,7 @@ export class WpClient {
 		const qsObj = {
 			_fields: params?.fields,
 			categories: params?.categories,
+			per_page: 100, //TODO: implement loop
 		}
 		const q = queryString.stringify(qsObj, { arrayFormat: 'comma' })
 
@@ -37,6 +39,7 @@ export class WpClient {
 		const result = await fetch(url)
 		return result.json()
 	}
+
 	async createComment(postId: number, commentData: CreateCommentData): Promise<CreateCommentRes> {
 		const body = {
 			post: postId,
@@ -56,6 +59,7 @@ export class WpClient {
 		})
 		return result.json()
 	}
+
 	getPostBySlug(arg0: string) {
 		throw new Error('Method not implemented.')
 	}
