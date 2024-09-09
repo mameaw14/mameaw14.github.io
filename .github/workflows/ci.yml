@@ -50,7 +50,7 @@ jobs:
         run: npm test
         working-directory: ${{ env.BUILD_PATH }}
       - name: Install, build, and upload your site
-        uses: withastro/action@v2
+        uses: withastro/action@v3
         env:
           WP_URL: ${{ secrets.WP_URL }}
           PUBLIC_WP_URL: ${{ secrets.PUBLIC_WP_URL }}
