@@ -3,18 +3,10 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { BlogDate } from '../utils/BlogDate.js'
+import '../styles/wp.css'
 
-export interface Props {
-	content: {
-		title: string
-		description: string
-		pubDate?: string
-		updatedDate?: string
-		heroImage?: string
-	}
-}
-
-let { title, description, pubDate, updatedDate, heroImage } = Astro.props.content
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props.frontmatter || Astro.props
+const content = Astro.props.compiledContent ? Astro.props.compiledContent() : (Astro.props.content || '')
 
 const formattedPubDate = pubDate ? BlogDate.fromDateString(pubDate).toDateString() : ''
 const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() : ''
@@ -29,7 +21,7 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 		<Header />
 		<main class="mb-8">
 			<article>
-				{heroImage && <img max-width="100%" max-height="360px" src={heroImage} alt="" class="mb-4" />}
+				{heroImage && <img src={heroImage} alt={title} class=" w-full object-cover mb-4 max-h-80" />}
 				<h1 class="text-3xl leading-tight mb-4 text-neutral-800">{title}</h1>
 				<div class="text-sm mt-2">
 					{pubDate && <time datetime={pubDate}>{formattedPubDate}</time>}
@@ -44,9 +36,30 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 				</div>
 				<hr class="border-t-border my-4" />
 				<div class="prose max-w-none prose-neutral mt-8">
-					<slot />
+					<Fragment set:html={content} />
 				</div>
 			</article>
+			<hr class="border-t-border mt-8 mb-4" />
+
+			<div class="prose max-w-none prose-neutral">
+				<!-- Giscus Comments -->
+				<script src="https://giscus.app/client.js"
+                data-repo="mameaw14/mameaw14.github.io"
+                data-repo-id="R_kgDOIyRxhg"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOIyRxhs4DBGek"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="en"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+				</script>
+			</div>
 		</main>
 		<Footer />
 	</body>
