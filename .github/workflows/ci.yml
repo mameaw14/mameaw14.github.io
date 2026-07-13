@@ -38,7 +38,7 @@ jobs:
         run: npm test
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build site
-        uses: withastro/action@v6
+        uses: withastro/action@v6.1.1
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
