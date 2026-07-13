@@ -5,18 +5,25 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config.js'
 import BlogListItem from '../components/WPBlogListItem.astro'
 import HorizontalLine from '../components/HorizontalLine.astro'
-import { PostReader } from '../utils/post.js'
-import type { Post } from '../types/Post.js'
-import { CommentReader } from '../utils/comment.js'
-import { WpClient } from '../apis/WpClient.js'
-import { CATEGORIES } from '../consts/wp'
 
-const wpClient = new WpClient(import.meta.env.WP_URL)
-let data = await wpClient.getPosts({
-	fields: ['author', 'id', 'excerpt', 'title', 'link', 'date', 'slug'],
-	categories: [CATEGORIES.TECH, CATEGORIES.POLITICS, CATEGORIES.LIFE, CATEGORIES.FUJIFILM_RECIPE],
-})
-let posts = data.map(new PostReader(new CommentReader()).fromWPPost)
+const postFiles = import.meta.glob('./blog/*.md', { eager: true })
+
+const posts = Object.entries(postFiles)
+  .map(([path, post]: [string, any]) => ({
+    id: 0,
+    title: post.frontmatter?.title || '',
+    description: post.frontmatter?.description || '',
+    content: post.compiledContent?.() || '',
+    pubDate: post.frontmatter?.date || '',
+    updatedDate: post.frontmatter?.updated || '',
+    heroImage: post.frontmatter?.heroImage || '',
+    tags: post.frontmatter?.tags || [],
+    slug: path.replace('./blog/', '').replace('.md', ''),
+    url: `/blog/${path.replace('./blog/', '').replace('.md', '')}`,
+    categories: post.frontmatter?.categories || [],
+  }))
+  .filter((post: any) => post.title)
+  .sort((a: any, b: any) => (new Date(a.pubDate) > new Date(b.pubDate) ? -1 : 1))
 ---
 
 <!DOCTYPE html>
