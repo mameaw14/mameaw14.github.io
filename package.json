@@ -14,7 +14,7 @@
 		"test:e2e": "DEBUG=pw:webserver playwright test"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^6.0.3",
+		"@astrojs/mdx": "^7.0.2",
 		"@astrojs/react": "^6.0.1",
 		"@astrojs/rss": "^4.0.19",
 		"@astrojs/sitemap": "^3.7.3",
@@ -39,6 +39,7 @@
 		"jest": "^29.7.0",
 		"prettier": "^3.2.5",
 		"prettier-plugin-astro": "^0.14.1",
-		"ts-jest": "^29.2.5"
+		"ts-jest": "^29.2.5",
+		"typescript": "^5.7.0"
 	}
 }
