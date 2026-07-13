@@ -12,4 +12,16 @@ describe(`Blog Date`, () => {
 
 		expect(blogDate.toDateString()).toBe('11 January 2023')
 	})
+
+	it(`should format ISO date string`, () => {
+		const blogDate = BlogDate.fromDateString('2023-02-09T13:14:14')
+
+		expect(blogDate.toDateString()).toBe('9 February 2023')
+	})
+
+	it(`should format date-only string`, () => {
+		const blogDate = BlogDate.fromDateString('2025-03-28')
+
+		expect(blogDate.toDateString()).toBe('28 March 2025')
+	})
 })

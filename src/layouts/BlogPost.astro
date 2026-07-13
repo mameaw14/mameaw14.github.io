@@ -5,8 +5,19 @@ import Footer from '../components/Footer.astro'
 import { BlogDate } from '../utils/BlogDate.js'
 import '../styles/wp.css'
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props.frontmatter || Astro.props
-const content = Astro.props.compiledContent ? Astro.props.compiledContent() : (Astro.props.content || '')
+const raw = Astro.props.frontmatter || Astro.props
+const { title, description, heroImage } = raw
+const pubDate = raw.pubDate || raw.date || ''
+const updatedDate = raw.updated || ''
+
+let content = ''
+if (Astro.slots.has('default')) {
+	content = await Astro.slots.render('default')
+} else if (typeof Astro.props.compiledContent === 'function') {
+	content = Astro.props.compiledContent()
+} else if (typeof Astro.props.content === 'string') {
+	content = Astro.props.content
+}
 
 const formattedPubDate = pubDate ? BlogDate.fromDateString(pubDate).toDateString() : ''
 const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).toDateString() : ''
@@ -25,7 +36,7 @@ const formattedUpdatedDate = updatedDate ? BlogDate.fromDateString(updatedDate).
 				<h1 class="text-3xl leading-tight mb-4 text-neutral-800">{title}</h1>
 				<div class="text-sm mt-2">
 					{pubDate && <time datetime={pubDate}>{formattedPubDate}</time>}
-					{pubDate && updatedDate && '/'}
+					{pubDate && updatedDate && ' / '}
 					{
 						updatedDate && (
 							<span>
