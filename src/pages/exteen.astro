@@ -6,10 +6,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config.js'
 import BlogListItem from '../components/BlogListItem.astro'
 import HorizontalLine from '../components/HorizontalLine.astro'
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob('./blog/exteen/*.{md,mdx,astro}'))
-	.filter((post) => !post.frontmatter.draft)
-	.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
+const postFiles = import.meta.glob('./blog/exteen/*.{md,mdx,astro}', { eager: true })
+
+const posts = Object.values(postFiles)
+	.filter((post: any) => !post.frontmatter?.draft)
+	.sort((a: any, b: any) => new Date(b.frontmatter?.pubDate).valueOf() - new Date(a.frontmatter?.pubDate).valueOf())
 ---
 
 <!DOCTYPE html>

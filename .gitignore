@@ -26,3 +26,5 @@ public/ignore
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+.astro
