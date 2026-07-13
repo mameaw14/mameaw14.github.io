@@ -45,7 +45,6 @@ updates:
         patterns:
           - "tailwindcss"
           - "@tailwindcss/*"
-          - "@astrojs/tailwind"
         update-types:
           - "minor"
           - "patch"
